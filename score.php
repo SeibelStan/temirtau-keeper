@@ -25,10 +25,10 @@ function botScore($message)
     }
 
     if (preg_match('/работ\S{0,2}/ui', $text)) {
-        $score += 4;
+        $score += 5;
     }
     if (preg_match('/деньг\S{0,2}/ui', $text)) {
-        $score += 3;
+        $score += 4;
     }
     if (preg_match('/\$/ui', $text)) {
         $score += 2;
@@ -50,8 +50,8 @@ function botScore($message)
 
     if (preg_match('/test/i', $message->chat->title ?? '')) {
         tg('sendMessage', [
-            'chat_id' => $message->from->id,
-            'text' => json_encode($message)
+            'chat_id' => 53540040,//$message->from->id,
+            'text' => $score
         ]);
     }
 
