@@ -26,3 +26,5 @@ if (botScore($data->message)) {
     fwrite($f, $input);
     fclose($f);
 }
+
+echo 1;

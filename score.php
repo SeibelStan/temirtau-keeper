@@ -2,6 +2,8 @@
 
 function botScore($message)
 {
+    $limit = 10;
+
     $score = 0;
     $fname = $message->from->first_name;
     $lname = $message->from->last_name;
@@ -9,10 +11,10 @@ function botScore($message)
     $text = $message->text;
 
     if (preg_match('/^[A-z][a-z]+$/', $fname)) {
-        $score += 5;
+        $score += 3;
     }
     if (preg_match('/^[A-Z]+$/', $lname)) {
-        $score += 5;
+        $score += 7;
     }
     if (!$uname) {
         $score += 1;
@@ -22,7 +24,10 @@ function botScore($message)
         $score -= 1;
     }
 
-    if (preg_match('/работ\S{1,2}/ui', $text)) {
+    if (preg_match('/работ\S{0,2}/ui', $text)) {
+        $score += 4;
+    }
+    if (preg_match('/деньг\S{0,2}/ui', $text)) {
         $score += 3;
     }
     if (preg_match('/\$/ui', $text)) {
@@ -32,7 +37,15 @@ function botScore($message)
         $score += 3;
     }
     if (preg_match('/\@[A-z]+\b/ui', $text)) {
-        $score += 3;
+        $score += 4;
+    }
+
+    $photos = tg('getUserProfilePhotos', [
+        'user_id' => $message->from->id,
+    ]);
+    $photosCount = json_decode($photos)?->result->total_count;
+    if (!$photosCount) {
+        $score += 1;
     }
 
     tg('sendMessage', [
@@ -40,5 +53,5 @@ function botScore($message)
         'text' => $score
     ]);
 
-    return $score >= 10;
+    return $score >= $limit;
 }
