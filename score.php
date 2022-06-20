@@ -33,7 +33,7 @@ function botScore($message)
     if (preg_match('/\$/ui', $text)) {
         $score += 2;
     }
-    if (preg_match('/в неделю/ui', $text)) {
+    if (preg_match('/в недел\S+/ui', $text)) {
         $score += 3;
     }
     if (preg_match('/\@[A-z]+\b/ui', $text)) {
