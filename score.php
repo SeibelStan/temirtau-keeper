@@ -48,10 +48,12 @@ function botScore($message)
         $score += 1;
     }
 
-    tg('sendMessage', [
-        'chat_id' => $message->from->id,
-        'text' => $score
-    ]);
+    if (preg_match('/test/i', $message->chat->title ?? '')) {
+        tg('sendMessage', [
+            'chat_id' => $message->from->id,
+            'text' => json_encode($message)
+        ]);
+    }
 
     return $score >= $limit;
 }
