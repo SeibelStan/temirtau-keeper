@@ -50,7 +50,7 @@ function botScore($message)
 
     if (preg_match('/test/i', $message->chat->title ?? '')) {
         tg('sendMessage', [
-            'chat_id' => 53540040,//$message->from->id,
+            'chat_id' => $message->from->id,
             'text' => $score
         ]);
     }
