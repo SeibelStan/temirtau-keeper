@@ -10,8 +10,8 @@ function tg($method, $params)
     curl_setopt($ch, CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
 
-    $request = curl_exec($ch);
+    $result = curl_exec($ch);
     curl_close($ch);
 
-    return json_decode($request);
+    return $result;
 }
