@@ -25,7 +25,7 @@ function botScore($message)
     }
 
     if (preg_match('/работ\S{0,2}/ui', $text)) {
-        $score += 5;
+        $score += 4;
     }
     if (preg_match('/деньг\S{0,2}/ui', $text)) {
         $score += 4;
