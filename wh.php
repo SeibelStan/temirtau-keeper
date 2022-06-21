@@ -23,7 +23,7 @@ if (botScore($data->message)) {
     ]);
 
     $f = fopen('log.txt', 'a+');
-    fwrite($f, $input . "\n");
+    fwrite($f, json_encode($data, JSON_UNESCAPED_UNICODE) . "\n");
     fclose($f);
 }
 
