@@ -23,7 +23,7 @@ if (botScore($data->message)) {
     ]);
 
     $f = fopen('log.txt', 'a+');
-    fwrite($f, $input);
+    fwrite($f, $input . "\n");
     fclose($f);
 }
 
